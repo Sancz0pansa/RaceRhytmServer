@@ -20,6 +20,34 @@ const createUser: ControllerAction = async (req, res) => {
     }
   };
 
+  const findUser: ControllerAction = async (req, res) => {
+    try {
+      const { login, password } = req.body;
+  
+      // Check if login or password is missing
+      if (!login || !password) {
+        res.sendStatus(400);
+        return;
+      }
+  
+      // Use your usersService to find the user
+      const user = await usersService.findUser(login, password);
+      // If the user is found, you can perform additional actions here
+      if (user) {
+        res.status(200).send('User found successfully');
+      } else {
+        res.sendStatus(404);
+      }
+  
+      
+      
+    } catch (error) {
+      console.error('Error in findUser controller:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  };
+
   export const userController = {
-    createUser
+    createUser,
+    findUser
   }
