@@ -36,7 +36,7 @@ const createUser: ControllerAction = async (req, res) => {
       if (user) {
         res.status(200).send('User found successfully');
       } else {
-        res.sendStatus(404);
+        res.status(404).send('User not found');
       }
   
       
