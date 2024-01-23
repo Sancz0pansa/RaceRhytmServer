@@ -19,7 +19,7 @@ const createUser: ControllerAction = async (req, res) => {
       return res.send(e.message);
     }
   };
-  console.log(dqwd)
+
   const findUser: ControllerAction = async (req, res) => {
     try {
       const { login, password } = req.body;
